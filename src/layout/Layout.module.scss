@@ -1,0 +1,25 @@
+.layout {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 50px;
+  background-color: #fff;
+  top: 0;
+  color: var(--header-text-color);
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 50px;
+  text-align: left;
+}

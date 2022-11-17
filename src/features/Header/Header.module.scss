@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  position: relative;
+}
+
+.logo {
+  font-weight: normal;
+  color: var(--text-color);
+  margin-right: 20px;
+}
+
+.exchange {
+  font-weight: bold;
+}
+
+.logoIcon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  transform: translate(-25px, 0);
+  color: var(--primary-color);
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 48px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent;
+
+  &:hover {
+    border-bottom: 2px solid var(--accent-color);
+  }
+}
+
+.activeBtn {
+  border-bottom: 2px solid var(--primary-color);
+  color: var(--text-color);
+}

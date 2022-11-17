@@ -1,0 +1,17 @@
+.pickCurrency {
+  display: flex;
+  align-items: flex-end;
+}
+
+.element {
+  margin-right: 20px;
+}
+
+.convertBtn {
+  background-color: var(--primary-color) !important;
+}
+
+.swapBtn {
+  background-color: #fff !important;
+  color: var(--primary-color) !important;
+}
