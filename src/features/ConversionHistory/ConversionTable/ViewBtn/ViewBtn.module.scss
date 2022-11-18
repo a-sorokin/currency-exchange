@@ -1,0 +1,11 @@
+.view {
+  display: flex;
+  font-weight: bold;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.icon {
+  margin-right: 5px;
+  margin-top: -2px;
+}

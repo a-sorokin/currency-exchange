@@ -9,6 +9,7 @@ import {
 } from "types";
 import { CURRENCIES, PERIODS, STATISTICS_TYPES, TABS } from "constants";
 import { getConvertData, getRatesHistory } from "http/http";
+import { saveToLocalStorage } from "store/localStorageUtils";
 
 interface TState {
   tabUsed: TTabs;
@@ -54,10 +55,19 @@ export const useAppStore = create<TState>((set, get) => ({
   },
 
   convert: (from: keyof TCurrencies, to: keyof TCurrencies, amount: number) => {
-    if (!amount) return;
+    if (amount !== get().amount) {
+      set(() => ({ amount }));
+    }
     set(() => ({ isLoading: true }));
     getConvertData(from, to, amount)
-      .then((data) =>
+      .then((data) => {
+        saveToLocalStorage({
+          date: new Date().toLocaleString(),
+          amount,
+          from,
+          to,
+        });
+
         set(() => ({
           rates: {
             amount: data.query.amount,
@@ -67,8 +77,8 @@ export const useAppStore = create<TState>((set, get) => ({
             to: data.query.to,
           },
           isLoading: false,
-        }))
-      )
+        }));
+      })
       .then(() => {
         get().setExchangeHistory();
       });

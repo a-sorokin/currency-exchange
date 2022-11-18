@@ -18,3 +18,12 @@ export type TExchangeHistory = { date: string; rate: number }[];
 
 export type TStatisticsType =
   typeof STATISTICS_TYPES[keyof typeof STATISTICS_TYPES];
+
+export type THistoryAction = {
+  date: string;
+  amount: number;
+  from: keyof TCurrencies;
+  to: keyof TCurrencies;
+};
+
+export type THistory = THistoryAction[];

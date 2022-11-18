@@ -2,22 +2,23 @@ import s from "./Layout.module.scss";
 import { Header } from "features/Header/Header";
 import { useAppStore } from "store/store";
 import { Converter } from "features/Converter/Converter";
+import { ConversionHistory } from "features/ConversionHistory/ConversionHistory";
 
 export const Layout = () => {
   const tabUsed = useAppStore((state) => state.tabUsed);
 
   return (
-    <div className={s.wrapper}>
-      <div className={s.header}>
+    <>
+      <header className={s.header}>
         <div className={s.headerContent}>
           <Header />
         </div>
-      </div>
+      </header>
 
-      <div className={s.content}>
+      <main className={s.content}>
         {tabUsed === "converter" && <Converter />}
-        {tabUsed === "history" && <div>History</div>}
-      </div>
-    </div>
+        {tabUsed === "history" && <ConversionHistory />}
+      </main>
+    </>
   );
 };

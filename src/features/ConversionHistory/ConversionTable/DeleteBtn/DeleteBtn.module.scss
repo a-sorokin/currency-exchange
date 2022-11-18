@@ -1,0 +1,11 @@
+.delete {
+  display: flex;
+  color: var(--warn-color);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.icon {
+  margin-right: 5px;
+  margin-top: -2px;
+}

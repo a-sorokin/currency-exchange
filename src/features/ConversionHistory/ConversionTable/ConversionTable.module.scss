@@ -1,0 +1,14 @@
+.row {
+  color: var(--header-text-color) !important;
+  font-weight: bold !important;
+
+  &:hover {
+    .btn {
+      opacity: 1;
+    }
+  }
+}
+
+.btn {
+  opacity: 0;
+}
