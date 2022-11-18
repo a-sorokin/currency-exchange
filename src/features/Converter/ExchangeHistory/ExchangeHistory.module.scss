@@ -1,0 +1,29 @@
+.exchangeHistory {
+  margin-top: 70px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: var(--section-font-size);
+  margin-bottom: 20px;
+}
+
+.selector {
+  margin-bottom: 20px;
+}
+
+.selectors {
+  display: flex;
+  align-items: center;
+}
+
+.tables {
+  display: flex;
+  justify-content: space-between;
+}
+
+.type {
+  display: flex;
+  justify-content: center;
+  width: 65%;
+}

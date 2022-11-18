@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
 import { useAppStore } from "store/store";
 import { TCurrencies } from "types";
-import { FC, useCallback, useState } from "react";
+import { FC, useCallback, useMemo, useState } from "react";
 
 const GetCurrencyOptions: FC<{ currencies: TCurrencies }> = ({
   currencies,
@@ -35,6 +35,16 @@ export const PickCurrency = () => {
     );
   }, [fromCurrency, toCurrency, amount]);
 
+  const currenciesOptions = useMemo(
+    () => GetCurrencyOptions({ currencies }),
+    [currencies]
+  );
+
+  const swapCurrencies = useCallback(() => {
+    setFromCurrency(toCurrency);
+    setToCurrency(fromCurrency);
+  }, [fromCurrency, toCurrency]);
+
   return (
     <div className={s.pickCurrency}>
       <div className={s.element}>
@@ -47,15 +57,16 @@ export const PickCurrency = () => {
         />
       </div>
       <div className={s.element}>
-        <FormControl sx={{ minWidth: 300 }}>
+        <FormControl sx={{ minWidth: 50, width: 300 }}>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             From
           </InputLabel>
           <NativeSelect
-            inputProps={{ name: "from", id: "uncontrolled-native" }}
+            value={fromCurrency}
+            inputProps={{ name: "from" }}
             onChange={(e) => setFromCurrency(e.target.value)}
           >
-            <GetCurrencyOptions currencies={currencies} />
+            {currenciesOptions}
           </NativeSelect>
         </FormControl>
       </div>
@@ -65,22 +76,23 @@ export const PickCurrency = () => {
           variant="contained"
           sx={{ minWidth: 40, padding: 1 }}
           className={s.swapBtn}
+          onClick={swapCurrencies}
         >
           <CompareArrowsIcon />
         </Button>
       </div>
 
       <div className={s.element}>
-        <FormControl sx={{ minWidth: 300 }}>
+        <FormControl sx={{ minWidth: 50, width: 300 }}>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             To
           </InputLabel>
           <NativeSelect
-            defaultValue={"USD"}
-            inputProps={{ name: "to", id: "uncontrolled-native" }}
+            value={toCurrency}
+            inputProps={{ name: "to" }}
             onChange={(e) => setToCurrency(e.target.value)}
           >
-            <GetCurrencyOptions currencies={currencies} />
+            {currenciesOptions}
           </NativeSelect>
         </FormControl>
       </div>

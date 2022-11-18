@@ -1,27 +1,37 @@
 import s from "./Rates.module.scss";
 import { useAppStore } from "store/store";
 
-const round = (num: number) => Math.round(num * 1000) / 1000;
+const round = (num: number, decimal: number = 3) => {
+  const n = Number("1" + "0".repeat(decimal));
+  return Math.round(num * n) / n;
+};
 
 export const Rates = () => {
-  // const rates = useAppStore((state) => state.rates);
-  const rates = {
-    amount: 123,
-    result: 127.596206,
-    rate: 1.037368,
-    from: "EUR",
-    to: "USD",
-  };
+  const { rates, isLoading } = useAppStore((state) => ({
+    rates: state.rates,
+    isLoading: state.isLoading,
+  }));
+
+  if (!rates || isLoading) return null;
   return (
     <div className={s.rates}>
-      <div>
+      <div className={s.fromTo}>
         <span>
           {rates.amount} {rates.from}
         </span>
         <span> = </span>
-        <span>
+        <span className={s.to}>
           {round(rates.result)} {rates.to}
         </span>
+      </div>
+
+      <div className={s.currencyRates}>
+        <div>
+          1 {rates.from} = {rates.rate} {rates.to}
+        </div>
+        <div>
+          1 {rates.to} = {round(1 / rates.rate, 6)} {rates.from}
+        </div>
       </div>
     </div>
   );

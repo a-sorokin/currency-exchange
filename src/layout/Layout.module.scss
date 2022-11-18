@@ -1,25 +1,43 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  background-color: var(--background-color);
+}
+
 .layout {
   display: flex;
+  max-width: 1000px;
+  //width: 1000px;
 }
 
 .header {
   display: flex;
+  position: absolute;
   justify-content: center;
   align-items: center;
-  position: absolute;
   width: 100vw;
   height: 50px;
   background-color: #fff;
   top: 0;
+  left: 0;
   color: var(--header-text-color);
   overflow: hidden;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  width: 1000px;
 }
 
 .content {
   display: flex;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding-top: 50px;
   text-align: left;
+  margin-bottom: 50px;
 }

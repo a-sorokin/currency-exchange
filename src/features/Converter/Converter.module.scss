@@ -1,6 +1,13 @@
 .title {
-  font-size: 48px;
+  font-size: var(--page-title-font-size);
   font-weight: bold;
   margin-top: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 70px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  font-size: var(--section-font-size);
+  margin-top: 70px;
 }

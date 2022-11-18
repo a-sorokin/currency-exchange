@@ -7,9 +7,13 @@ export const Layout = () => {
   const tabUsed = useAppStore((state) => state.tabUsed);
 
   return (
-    <div className={s.layout}>
-      <div className={s.header}>
-        <Header />
+    <div className={s.wrapper}>
+      <div className={s.layout}>
+        <div className={s.header}>
+          <div className={s.headerContent}>
+            <Header />
+          </div>
+        </div>
       </div>
       <div className={s.content}>
         {tabUsed === "converter" && <Converter />}

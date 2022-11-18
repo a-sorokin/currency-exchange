@@ -11,3 +11,7 @@ export type TRates = {
   from: keyof TCurrencies;
   to: keyof TCurrencies;
 };
+
+export type TExchangeHistoryPeriod = "7" | "14" | "30";
+
+export type TExchangeHistory = [{ date: string; rate: number }];
