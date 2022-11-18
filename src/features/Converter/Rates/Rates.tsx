@@ -7,12 +7,9 @@ const round = (num: number, decimal: number = 3) => {
 };
 
 export const Rates = () => {
-  const { rates, isLoading } = useAppStore((state) => ({
-    rates: state.rates,
-    isLoading: state.isLoading,
-  }));
+  const rates = useAppStore((state) => state.rates);
 
-  if (!rates || isLoading) return null;
+  if (!rates) return null;
   return (
     <div className={s.rates}>
       <div className={s.fromTo}>

@@ -1,4 +1,4 @@
-import { CURRENCIES, TABS } from "constants";
+import { CURRENCIES, PERIODS, STATISTICS_TYPES, TABS } from "constants";
 
 export type TTabs = typeof TABS[keyof typeof TABS];
 
@@ -12,6 +12,9 @@ export type TRates = {
   to: keyof TCurrencies;
 };
 
-export type TExchangeHistoryPeriod = "7" | "14" | "30";
+export type TExchangeHistoryPeriod = typeof PERIODS[number];
 
-export type TExchangeHistory = [{ date: string; rate: number }];
+export type TExchangeHistory = { date: string; rate: number }[];
+
+export type TStatisticsType =
+  typeof STATISTICS_TYPES[keyof typeof STATISTICS_TYPES];

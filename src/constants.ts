@@ -10,3 +10,10 @@ export const CURRENCIES = {
   JPY: { isUsed: false },
   AUD: { isUsed: false },
 };
+
+export const STATISTICS_TYPES = {
+  Table: "Table",
+  Chart: "Chart",
+};
+
+export const PERIODS = ["7", "14", "30"];

@@ -16,14 +16,9 @@ export const Converter = () => {
 
       {rates ? (
         <>
-          {isLoading ? (
-            <div className={s.loading}>Loading...</div>
-          ) : (
-            <>
-              <Rates />
-              <ExchangeHistory />
-            </>
-          )}
+          {isLoading ? <div className={s.loading} /> : null}
+          <Rates />
+          <ExchangeHistory />
         </>
       ) : null}
     </div>

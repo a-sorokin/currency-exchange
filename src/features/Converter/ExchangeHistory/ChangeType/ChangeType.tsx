@@ -4,11 +4,21 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import s from "./ChangeType.module.scss";
 import { FC } from "react";
+import { TStatisticsType } from "types";
 
-export const ChangeType: FC<{ className?: string }> = ({ className }) => (
+export const ChangeType: FC<{
+  type: TStatisticsType;
+  changeType: (type: TStatisticsType) => void;
+  className?: string;
+}> = ({ type, className, changeType }) => (
   <div className={className}>
     <FormControl>
-      <RadioGroup row name="row-radio-buttons-group">
+      <RadioGroup
+        row
+        name="row-radio-buttons-group"
+        value={type}
+        onChange={(e) => changeType(e.target.value as TStatisticsType)}
+      >
         <FormControlLabel
           value="Table"
           control={<Radio className={s.radio} />}

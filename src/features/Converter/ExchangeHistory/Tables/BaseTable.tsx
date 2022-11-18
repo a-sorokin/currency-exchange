@@ -25,7 +25,7 @@ export const BaseTable: FC<{ rows: string[]; data: any[][] }> = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((d, i) => (
+          {data.map((d) => (
             <TableRow
               key={d[0]}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

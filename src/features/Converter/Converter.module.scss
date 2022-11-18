@@ -6,8 +6,11 @@
 }
 
 .loading {
-  display: flex;
-  justify-content: center;
-  font-size: var(--section-font-size);
-  margin-top: 70px;
+  position: absolute;
+  top:50px;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  opacity: 0.5;
 }
