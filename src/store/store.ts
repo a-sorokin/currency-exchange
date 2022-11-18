@@ -88,12 +88,13 @@ export const useAppStore = create<TState>((set, get) => ({
     if (!rates) return {};
     getRatesHistory(exchangeHistoryPeriod, rates.from, rates.to).then(
       (data) => {
-        const history: TExchangeHistory = Object.entries(data.rates).map(
-          ([key, value]: [key: string, value: any]) => ({
+        const history: TExchangeHistory = Object.entries(data.rates)
+          .map(([key, value]: [key: string, value: any]) => ({
             date: key,
             rate: value[rates.to],
-          })
-        );
+          }))
+          .filter((item) => item.rate);
+
         set(() => ({ exchangeHistory: history }));
       }
     );

@@ -9,7 +9,7 @@ import {
 import { useAppStore } from "store/store";
 import { useMemo } from "react";
 
-const round = (rate: number) => Math.round(rate * 10000) / 10000;
+const round = (rate: number) => Math.round(rate * 1000) / 1000;
 
 const Chart = () => {
   const exchangeHistory = useAppStore((state) => state.exchangeHistory);
@@ -22,6 +22,7 @@ const Chart = () => {
 
   const maxValue = useMemo(() => {
     const max = Math.max(...exchangeHistory.map((item) => item.rate));
+    console.log(`max`, round(max + max * 0.001));
     return round(max + max * 0.001);
   }, [exchangeHistory]);
 

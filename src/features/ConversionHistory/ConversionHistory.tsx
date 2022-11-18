@@ -44,7 +44,9 @@ export const ConversionHistory = () => {
           removeFromHistory={removeFromHistory}
           showConvertTab={showConvertTab}
         />
-      ) : null}
+      ) : (
+        <div>Empty for now</div>
+      )}
     </div>
   );
 };
