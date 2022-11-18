@@ -93,7 +93,8 @@ export const useAppStore = create<TState>((set, get) => ({
             date: key,
             rate: value[rates.to],
           }))
-          .filter((item) => item.rate);
+          .filter((item) => item.rate)
+          .reverse();
 
         set(() => ({ exchangeHistory: history }));
       }

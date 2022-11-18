@@ -4,6 +4,6 @@ Live demo: https://a-sorokin.github.io/currency-exchange/
 
 ## Tech stack:
 * Vite
-* Raact
+* React
 * Typescript
 * Zustand (state management)
