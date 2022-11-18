@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import s from "./ExchangeHistory.module.scss";
 import { FormControl, InputLabel, NativeSelect } from "@mui/material";
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import { ChangeEvent, useCallback } from "react";
 import { useAppStore } from "store/store";
 import { TExchangeHistoryPeriod, TStatisticsType } from "types";
 import { ExchangeHistoryTable } from "features/Converter/ExchangeHistory/Tables/ExchangeHistoryTable";
@@ -24,19 +24,13 @@ export const ExchangeHistory = () => {
     setStatisticsType: state.setStatisticsType,
   }));
 
-  const [period, setPeriod] = useState(exchangeHistoryPeriod);
-
   const changePeriod = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    setPeriod(e.target.value as TExchangeHistoryPeriod);
+    setExchangeHistoryPeriod(e.target.value as TExchangeHistoryPeriod);
   }, []);
   const changeType = useCallback((type: TStatisticsType) => {
     // @ts-ignore
     setStatisticsType(STATISTICS_TYPES[type]);
   }, []);
-
-  useEffect(() => {
-    setExchangeHistoryPeriod(period);
-  }, [period]);
 
   return (
     <div className={s.exchangeHistory}>
@@ -49,7 +43,7 @@ export const ExchangeHistory = () => {
               From
             </InputLabel>
             <NativeSelect
-              value={period}
+              value={exchangeHistoryPeriod}
               inputProps={{ name: "from" }}
               onChange={changePeriod}
             >

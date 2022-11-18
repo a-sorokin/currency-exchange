@@ -19,15 +19,17 @@ const GetCurrencyOptions: FC<{ currencies: TCurrencies }> = ({
 );
 
 export const PickCurrency = () => {
-  const { currencies, convert } = useAppStore((state) => ({
+  const { amount, setAmount, currencies, convert } = useAppStore((state) => ({
+    amount: state.amount,
+    setAmount: state.setAmount,
     currencies: state.currencies,
     convert: state.convert,
   }));
-  const [amount, setAmount] = useState(0);
   const [fromCurrency, setFromCurrency] = useState(Object.keys(currencies)[0]);
   const [toCurrency, setToCurrency] = useState(Object.keys(currencies)[1]);
 
   const handleConvert = useCallback(() => {
+    if (!amount || sameCurrency) return;
     convert(
       fromCurrency as keyof TCurrencies,
       toCurrency as keyof TCurrencies,
@@ -40,9 +42,15 @@ export const PickCurrency = () => {
     [currencies]
   );
 
+  const sameCurrency = useMemo(
+    () => fromCurrency === toCurrency,
+    [fromCurrency, toCurrency]
+  );
+
   const swapCurrencies = useCallback(() => {
+    const temp = fromCurrency;
     setFromCurrency(toCurrency);
-    setToCurrency(fromCurrency);
+    setToCurrency(temp);
   }, [fromCurrency, toCurrency]);
 
   return (
@@ -53,11 +61,12 @@ export const PickCurrency = () => {
           label="Amount"
           variant="standard"
           type="number"
+          value={amount || ""}
           onChange={(e) => setAmount(Number(e.target.value))}
         />
       </div>
       <div className={s.element}>
-        <FormControl sx={{ minWidth: 50, width: 300 }}>
+        <FormControl sx={{ minWidth: 50, width: 300 }} error={sameCurrency}>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             From
           </InputLabel>
@@ -83,7 +92,7 @@ export const PickCurrency = () => {
       </div>
 
       <div className={s.element}>
-        <FormControl sx={{ minWidth: 50, width: 300 }}>
+        <FormControl sx={{ minWidth: 50, width: 300 }} error={sameCurrency}>
           <InputLabel variant="standard" htmlFor="uncontrolled-native">
             To
           </InputLabel>
@@ -102,6 +111,7 @@ export const PickCurrency = () => {
           variant="contained"
           className={s.convertBtn}
           onClick={handleConvert}
+          disabled={!amount || sameCurrency}
         >
           Convert
         </Button>

@@ -12,6 +12,7 @@ import { getConvertData, getRatesHistory } from "http/http";
 
 interface TState {
   tabUsed: TTabs;
+  amount: number | null;
   currencies: TCurrencies;
   rates: TRates | null;
   isLoading: boolean;
@@ -20,7 +21,7 @@ interface TState {
   statisticsType: TStatisticsType;
 
   changeTab: (tab: TTabs) => void;
-  useCurrency: (currency: keyof TCurrencies) => void;
+  setAmount: (amount: number) => void;
   setExchangeHistoryPeriod: (period: TExchangeHistoryPeriod) => void;
   setStatisticsType: (type: TStatisticsType) => void;
 
@@ -34,6 +35,7 @@ interface TState {
 
 export const useAppStore = create<TState>((set, get) => ({
   tabUsed: TABS.CONVERTER,
+  amount: null,
   currencies: CURRENCIES,
   rates: null,
   isLoading: false,
@@ -42,11 +44,7 @@ export const useAppStore = create<TState>((set, get) => ({
   statisticsType: STATISTICS_TYPES.Table,
 
   changeTab: (tab: TTabs) => set(() => ({ tabUsed: tab })),
-  useCurrency: (currency: keyof TCurrencies) => {
-    set((state) => ({
-      currencies: { ...state.currencies, [currency]: { isUsed: true } },
-    }));
-  },
+  setAmount: (amount: number) => set(() => ({ amount })),
   setExchangeHistoryPeriod: (period: TExchangeHistoryPeriod) => {
     set(() => ({ exchangeHistoryPeriod: period }));
     get().setExchangeHistory();

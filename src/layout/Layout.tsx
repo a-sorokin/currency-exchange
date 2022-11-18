@@ -8,13 +8,12 @@ export const Layout = () => {
 
   return (
     <div className={s.wrapper}>
-      <div className={s.layout}>
-        <div className={s.header}>
-          <div className={s.headerContent}>
-            <Header />
-          </div>
+      <div className={s.header}>
+        <div className={s.headerContent}>
+          <Header />
         </div>
       </div>
+
       <div className={s.content}>
         {tabUsed === "converter" && <Converter />}
         {tabUsed === "history" && <div>History</div>}
